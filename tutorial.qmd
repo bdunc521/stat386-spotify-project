@@ -16,7 +16,7 @@ import pandas as pd
 df = pd.read_csv('data.csv')
 ```
 **Ensure the CSV file is in your data/ folder or somewhere you can work with it**
-
+**Be sure to install the package by using `uv add stat386-spotify-project` in the terminal**
 #### Data Cleanup
 Once the data is loaded in, it's time for some basic clean-up. The artists are formatted as a list within the column (to account for songs with multiple artists or features). This makes analysis difficult, so we need to clean that up.
 

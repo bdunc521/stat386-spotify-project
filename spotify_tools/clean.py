@@ -3,6 +3,13 @@ import pandas as pd
 import ast
 
 df = pd.read_csv('data.csv')
+
+cols = ['name', 'artists', 'year', 'duration_s',
+        'tempo', 'acousticness', 'energy',
+        'valence', 'key', 'popularity', 'explicit']
+
+df = df[[c for c in cols if c in df.columns]]
+
 def fix_artists(df):
     #Seperate out the lists in the artist column
     df['artists'] = df['artists'].apply(ast.literal_eval)
@@ -28,10 +35,10 @@ def column_cleaning(df):
     df['explicit'] = df['explicit'].map({1: 'Yes', 0: 'No'})
 
 #Sort by artist name
-df = df.sort_values(by ='artists').reset_index(drop = True)
+#df = df.sort_values(by ='artists').reset_index(drop = True)
 
-df = df[['name', 'artists', 'year', 'duration_s', 'tempo', 'acousticness', 'energy', 'valence', 'key', 'popularity', 'explicit']]
+#df = df[['name', 'artists', 'year', 'duration_s', 'tempo', 'acousticness', 'energy', 'valence', 'key', 'popularity', 'explicit']]
 
-df = df.drop_duplicates(subset=['name', 'artists']).reset_index(drop=True)
+#df = df.drop_duplicates(subset=['name', 'artists']).reset_index(drop=True)
 
-df.to_csv('app_data.csv', index = False)
+#df.to_csv('app_data.csv', index = False)

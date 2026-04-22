@@ -41,3 +41,39 @@ def top_songs(df, feature, n=10):
 
     # Return clean output
     return top[['name', 'artists', feature]]
+
+def artist_variability(df, artist):
+    """
+    Measure how diverse a specific artist's music is.
+    """
+
+    features = ['duration_s', 'energy', 'acousticness', 'tempo', 'valence']
+
+    # Filter to one artist
+    df_artist = df[df['artists'] == artist].copy()
+
+    if df_artist.empty:
+        raise ValueError("Artist not found in dataset")
+
+    # Ensure numeric
+    for col in features:
+        df_artist[col] = pd.to_numeric(df_artist[col], errors='coerce')
+
+    df_artist = df_artist.dropna(subset=features)
+
+    # Compute standard deviation per feature
+    variability = df_artist[features].std().to_frame().T
+
+    # Add overall score
+    variability['overall_variability'] = variability.mean(axis=1)
+
+    return variability
+
+def feature_correlations(df):
+    """
+    Return correlation matrix for audio features.
+    """
+
+    features = ['duration_s', 'energy', 'acousticness', 'tempo', 'valence']
+
+    return df[features].corr()

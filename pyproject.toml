@@ -1,15 +1,18 @@
 [project]
-name = "stat386-spotify-project"
+name = "spotify-tools-stat386"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "build>=1.4.3",
     "ipykernel>=7.2.0",
     "matplotlib>=3.10.8",
     "numpy>=2.4.4",
     "pandas>=3.0.2",
     "requests>=2.33.1",
     "scikit-learn>=1.8.0",
+    "stat386-spotify-project>=0.1.0",
     "streamlit>=1.56.0",
+    "twine>=6.2.0",
 ]
